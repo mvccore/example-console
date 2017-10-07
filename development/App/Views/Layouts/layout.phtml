@@ -1,0 +1,16 @@
+<?php /** @var $this \MvcCore\View */ ?>
+<?php echo $this->Chars(70, '='); ?>
+
+|<?php echo $this->Chars(68); ?>|
+|<?php
+	$spacesLength = 68 - strlen($this->Title);
+	echo $this->Chars(floor($spacesLength / 2));
+	echo $this->Title;
+	echo $this->Chars(ceil($spacesLength / 2));
+?>|
+|<?php echo $this->Chars(68); ?>|
+<?php echo $this->Chars(70, '='); ?>
+
+
+<?php echo $this->GetContent(); ?>
+
