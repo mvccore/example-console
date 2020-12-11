@@ -8,13 +8,13 @@ class Index extends Base
 		$this->view->Title = 'Console Application Demo';
 		$this->view->ImportKey = 'R';
 		$this->view->QuitKey = 'Q';
-		register_shutdown_function(array(__CLASS__, 'HandleInput'));
+		register_shutdown_function([__CLASS__, 'HandleInput']);
     }
 	public static function HandleInput () {
 		$handle = fopen('php://stdin', 'r');
 		$line = trim(fgets($handle));
 		if ($line == 'R') {
-			$this->Url('Import:Index', array("testparam" => "test value"));
+			$this->Url('Import:Index', ["testparam" => "test value"]);
 		} else if ($line == 'Q') {
 			exit;
 		} else {

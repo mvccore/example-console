@@ -6,30 +6,30 @@ class Bootstrap
 {
 	public static function Init () {
 		// patch core to use extended request class for cli
-		\MvcCore::GetInstance()->SetRequestClass(\MvcCore\Ext\Request\Cli::class);
+		\MvcCore\Application::GetInstance()->SetRequestClass('\\MvcCore\\Ext\\Request\\Cli');
 
 		// patch core to use extended debug class
-		\MvcCore::GetInstance()->SetDebugClass(\MvcCore\Ext\Debug\Tracy::class);
+		\MvcCore\Application::GetInstance()->SetDebugClass('\\MvcCore\\Ext\\Debug\\Tracy');
 		
 		// set up application routes without custom names, defined basicly as Controller::Action
-		\MvcCore\Router::GetInstance(array(
-			'Index:Index'			=> array(
+		\MvcCore\Router::GetInstance([
+			'Index:Index'			=> [
 				'pattern'			=> "#^/$#",
 				'reverse'			=> '/',
-			),
-			'CdCollection:Index'	=> array(
+			],
+			'CdCollection:Index'	=> [
 				'pattern'			=> "#^/albums$#",
 				'reverse'			=> '/albums',
-			),
-			'CdCollection:Create'	=> array(
+			],
+			'CdCollection:Create'	=> [
 				'pattern'			=> "#^/create#",
 				'reverse'			=> '/create',
-			),
-			'CdCollection:Edit'	=> array(
+			],
+			'CdCollection:Edit'	=> [
 				'pattern'			=> "#^/edit/([0-9]*)#",
 				'reverse'			=> '/edit/{%id}',
-				'params'			=> array('id' => 0,),
-			),
-		));
+				'params'			=> ['id' => 0,],
+			],
+		]);
 	}
 }
